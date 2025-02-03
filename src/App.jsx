@@ -1,0 +1,11 @@
+import { useState } from 'react'
+import Sidebar from './components/sidebar'
+function App() {
+  
+
+  return (
+    <Sidebar />
+  )
+}
+
+export default App
