@@ -1,11 +1,23 @@
 import { useState } from 'react'
 import Sidebar from './components/sidebar'
-function App() {
-  
+import Headerdashboard from './components/headerdashboard'
+import CardDashboard from './components/carddashboard'
+import TablePembayaran from './components/tablepembayaran'
 
+
+function App() {
   return (
-    <Sidebar />
+    <div className="flex">
+      <Sidebar />
+      <div className="flex flex-col w-full">
+      <Headerdashboard />
+      <CardDashboard />
+      <TablePembayaran />
+      </div>
+
+    </div>
   )
 }
 
 export default App
+
