@@ -1,11 +1,7 @@
 function Search() {
     return (
         <div className="flex items-center bg-white rounded-md border px-2 py-4 h-12 mt-2 mr-4">
-            <input
-                type="text"
-                placeholder="Cari"
-                className="px-2 py-1 text-[#8A8A8A] bg-transparent focus:outline-none"
-            />
+           
             <button className="px-2 py-1 bg-[#6148FF] text-white rounded-md hover:opacity-80">
                 <img src="/assets/search.svg" alt="Search" />
             </button>

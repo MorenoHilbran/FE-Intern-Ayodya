@@ -1,23 +1,29 @@
-import { useState } from 'react'
-import Sidebar from './components/sidebar'
-import Headerdashboard from './components/headerdashboard'
-import CardDashboard from './components/carddashboard'
-import TablePembayaran from './components/tablepembayaran'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboard from "./components/templates/Dashboard";
+import Kelola from "./components/templates/Kelola";
+import LoginPage from "./components/templates/LoginPage";
 
 
-function App() {
-  return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex flex-col w-full">
-      <Headerdashboard />
-      <CardDashboard />
-      <TablePembayaran />
-      </div>
+const router = createBrowserRouter([
+  {
+    path: "/Admin",
+    element: <Dashboard />,
 
-    </div>
-  )
+  },
+  {
+    path: "/",
+    element: <LoginPage />,
+  },
+  {
+    path:"/Admin/dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path:"/Admin/kelola",
+    element: <Kelola />,
+  }
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App
-
