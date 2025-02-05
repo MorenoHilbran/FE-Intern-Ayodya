@@ -1,11 +1,11 @@
 import Login from "../molecules/login";
 import Panel from "../molecules/panel";
 
-export default function LoginPage (){
+export default function LoginPage() {
     return (
-    <div className="w-2/8">
-        <Panel />     
-        <Login />
-    </div>
-    )
+        <div className="flex w-full h-screen">
+            <Panel />     
+            <Login />
+        </div>
+    );
 }
