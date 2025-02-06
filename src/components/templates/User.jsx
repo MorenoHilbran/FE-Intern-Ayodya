@@ -1,7 +1,7 @@
 import CardDashboard from "../dashboard/Card";
 import TablePembayaran from "../dashboard/Tablepembayaran";
 
-export default function Dashboard() {
+export default function User() {
   return (
     <>
       <CardDashboard />

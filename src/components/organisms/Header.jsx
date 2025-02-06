@@ -1,5 +1,4 @@
-import Search from "../molecules/search";
-
+import Search from "../molecules/Search";
 
 export default function DashboardHeader() {
   return (

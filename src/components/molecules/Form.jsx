@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Form({ onClose }) {
+export default function Form({ onClose, callback }) {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -9,7 +9,7 @@ export default function Form({ onClose }) {
     type: "",
     level: "",
     price: "",
-    content: "", 
+    content: "",
   });
 
   const handleChange = (e) => {
@@ -22,7 +22,8 @@ export default function Form({ onClose }) {
       .post("http://localhost:3000/api/class", formData)
       .then(() => {
         alert("Data kelas berhasil ditambahkan!");
-        onClose(); 
+        callback();
+        onClose();
       })
       .catch((error) => {
         console.error("Terjadi kesalahan:", error);
@@ -32,9 +33,8 @@ export default function Form({ onClose }) {
 
   return (
     <div className="flex justify-center items-center align-center w-full h-screen backdrop-brightness-20 fixed top-0 left-0">
-      <div className="bg-white w-[750px] h-[853px] overflow-y-scroll overflow-hidden scrollbar-none p-10 rounded-3xl relative">
-
-        <button className="absolute top-4 right-4" onClick={ onClose }>
+      <div className="bg-white max-h-screen overflow-y-scroll overflow-hidden scrollbar-none px-[150px] py-[50px] rounded-3xl relative">
+        <button className="absolute top-4 right-4" onClick={onClose}>
           <img src="/assets/close.svg" alt="Close" />
         </button>
 
@@ -50,7 +50,6 @@ export default function Form({ onClose }) {
             { name: "type", label: "Tipe Kelas" },
             { name: "level", label: "Level" },
             { name: "price", label: "Harga" },
-            
           ].map((field, index) => (
             <div key={index} className="mb-4">
               <label htmlFor={field.name} className="block mb-2 font-medium">
@@ -62,7 +61,7 @@ export default function Form({ onClose }) {
                 value={formData[field.name]}
                 onChange={handleChange}
                 placeholder={`Masukkan ${field.label.toLowerCase()}`}
-                className="border rounded-[20px] w-full py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+                className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
                 required
               />
             </div>
@@ -82,10 +81,16 @@ export default function Form({ onClose }) {
           </div>
 
           <div className="flex gap-5 mt-6">
-            <button type="button" className="bg-[#FF0000] text-white rounded-[30px] py-4 w-1/2 font-semibold">
+            <button
+              type="button"
+              className="bg-[#FF0000] text-white rounded-[30px] py-4 w-1/2 font-semibold"
+            >
               Upload Video
             </button>
-            <button type="submit" className="bg-[#6148FF] text-white rounded-[30px] py-4 w-1/2 font-semibold" >
+            <button
+              type="submit"
+              className="bg-[#6148FF] text-white rounded-[30px] py-4 w-1/2 font-semibold"
+            >
               Simpan
             </button>
           </div>
