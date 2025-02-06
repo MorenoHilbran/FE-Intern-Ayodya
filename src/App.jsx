@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/templates/Dashboard";
 import Kelola from "./components/templates/Kelola";
 import LoginPage from "./components/templates/LoginPage";
+import Home from "./components/pages/users/home";
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path:"/Admin/kelola",
     element: <Kelola />,
+  },
+  {
+    path:"/User/home",
+    element: <Home />
   }
 ]);
 

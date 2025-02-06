@@ -31,8 +31,8 @@ export default function Form({ onClose }) {
   };
 
   return (
-    <div className="flex justify-center items-center w-full h-screen backdrop-brightness-20 fixed top-0 left-0">
-      <div className="bg-white w-[750px] h-full overflow-y-scroll overflow-x-hidden scrollbar-none p-10 rounded-3xl relative mt-[40px] ml-[57px]">
+    <div className="flex justify-center items-center align-center w-full h-screen backdrop-brightness-20 fixed top-0 left-0">
+      <div className="bg-white w-[750px] h-[853px] overflow-y-scroll overflow-hidden scrollbar-none p-10 rounded-3xl relative">
 
         <button className="absolute top-4 right-4" onClick={ onClose }>
           <img src="/assets/close.svg" alt="Close" />
