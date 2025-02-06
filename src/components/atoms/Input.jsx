@@ -3,6 +3,7 @@ export default function Input({placeholder}) {
         <input
         type="text"
         placeholder={placeholder}
+        required
         className="px-2 py-1 text-[#8A8A8A] bg-transparent focus:outline-none"
     />
     )
