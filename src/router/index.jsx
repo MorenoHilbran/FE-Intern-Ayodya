@@ -4,6 +4,7 @@ import Dashboard from "../components/templates/Dashboard";
 import Kelola from "../components/templates/Kelola";
 import Layout from "../components/layouts/Layout";
 import User from "../components/templates/User";
+import Home from "../components/pages/users/Home";
 
 export default function Router() {
   return (
@@ -16,30 +17,11 @@ export default function Router() {
           <Route path="kelola" element={<Kelola />} />
           <Route path="user" element={<User />} />
         </Route>
+
+        <Route path="user/" element={<Home />}>
+          <Route path="home" element={<Home />} />
+        </Route>
       </Route>
     </Routes>
   );
 }
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/Admin",
-//     element: <Dashboard />,
-//   },
-//   {
-//     path: "/",
-//     element: <LoginPage />,
-//   },
-//   {
-//     path: "/Admin/dashboard",
-//     element: <Dashboard />,
-//   },
-//   {
-//     path: "/Admin/kelola",
-//     element: <Kelola />,
-//   },
-//   {
-//     path: "/User/home",
-//     element: <Home />,
-//   },
-// ]);

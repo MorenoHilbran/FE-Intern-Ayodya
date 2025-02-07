@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../dashboard/Sidebar";
-import DashboardHeader from "../organisms/Header";
+import Sidebar from "../organisms/Sidebar";
+import DashboardHeader from "../organisms/HeaderAdmin";
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {

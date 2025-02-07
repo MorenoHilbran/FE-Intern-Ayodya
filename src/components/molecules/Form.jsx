@@ -20,22 +20,22 @@ export default function Form({ onClose, callback, editData }) {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }; // Membuat state untuk menyimpan data form yang diinput oleh user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editData) {
-        // Jika mode edit, gunakan PUT
-        await axios.put(`http://localhost:3000/api/class/${editData.id}`, formData);
+       // Jika dalam mode edit, gunakan PATCH
+        await axios.patch(`http://localhost:3000/api/class/${editData.id}`, formData);
         alert("Data kelas berhasil diperbarui!");
       } else {
         // Jika mode tambah, gunakan POST
         await axios.post("http://localhost:3000/api/class", formData);
         alert("Data kelas berhasil ditambahkan!");
       }
-      callback(); // Refresh data
-      onClose(); // Tutup modal
+      callback(); 
+      onClose(); 
     } catch (error) {
       console.error("Terjadi kesalahan:", error);
       alert(`Gagal ${editData ? "memperbarui" : "menambahkan"} data kelas.`);

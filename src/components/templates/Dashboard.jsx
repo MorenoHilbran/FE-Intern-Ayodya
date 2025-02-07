@@ -1,5 +1,6 @@
-import CardDashboard from "../dashboard/Card";
-import TablePembayaran from "../dashboard/Tablepembayaran";
+
+import TablePembayaran from "../organisms/TablePayment";
+import CardDashboard from "../molecules/CardDashboard";
 
 export default function Dashboard() {
   return (

@@ -1,5 +1,6 @@
-import CardDashboard from "../dashboard/Card";
-import TableKelola from "../dashboard/Tablekelola";
+
+import TableKelola from "../organisms/TableClass";
+import CardDashboard from "../molecules/CardDashboard";
 
 export default function Kelola() {
   return (
