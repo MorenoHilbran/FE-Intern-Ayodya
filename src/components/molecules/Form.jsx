@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Form({ onClose, callback }) {
+export default function Form({ onClose, callback, editData }) {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -12,34 +12,45 @@ export default function Form({ onClose, callback }) {
     content: "",
   });
 
+  useEffect(() => {
+    if (editData) {
+      setFormData(editData); // Mengisi data jika dalam mode edit
+    }
+  }, [editData]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3000/api/class", formData)
-      .then(() => {
+    try {
+      if (editData) {
+        // Jika mode edit, gunakan PUT
+        await axios.put(`http://localhost:3000/api/class/${editData.id}`, formData);
+        alert("Data kelas berhasil diperbarui!");
+      } else {
+        // Jika mode tambah, gunakan POST
+        await axios.post("http://localhost:3000/api/class", formData);
         alert("Data kelas berhasil ditambahkan!");
-        callback();
-        onClose();
-      })
-      .catch((error) => {
-        console.error("Terjadi kesalahan:", error);
-        alert("Gagal menambahkan data kelas.");
-      });
+      }
+      callback(); // Refresh data
+      onClose(); // Tutup modal
+    } catch (error) {
+      console.error("Terjadi kesalahan:", error);
+      alert(`Gagal ${editData ? "memperbarui" : "menambahkan"} data kelas.`);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center align-center w-full h-screen backdrop-brightness-20 fixed top-0 left-0">
-      <div className="bg-white max-h-screen overflow-y-scroll overflow-hidden scrollbar-none px-[150px] py-[50px] rounded-3xl relative">
+    <div className="flex justify-center items-center w-full h-screen backdrop-brightness-20 fixed top-0 left-0">
+      <div className="bg-white max-h-screen overflow-y-scroll scrollbar-none px-[150px] py-[50px] rounded-3xl relative">
         <button className="absolute top-4 right-4" onClick={onClose}>
           <img src="/assets/close.svg" alt="Close" />
         </button>
 
         <h1 className="text-[#6148FF] font-bold text-2xl text-center mb-6">
-          Tambah Kelas
+          {editData ? "Edit Kelas" : "Tambah Kelas"}
         </h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col">
@@ -58,7 +69,7 @@ export default function Form({ onClose, callback }) {
               <input
                 type="text"
                 name={field.name}
-                value={formData[field.name]}
+                value={formData[field.name] || ""}
                 onChange={handleChange}
                 placeholder={`Masukkan ${field.label.toLowerCase()}`}
                 className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
@@ -73,7 +84,7 @@ export default function Form({ onClose, callback }) {
             </label>
             <textarea
               name="content"
-              value={formData.content}
+              value={formData.content || ""}
               onChange={handleChange}
               placeholder="Masukkan materi"
               className="border rounded-[20px] w-full py-2 px-4 h-24 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
