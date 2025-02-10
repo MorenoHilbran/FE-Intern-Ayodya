@@ -13,7 +13,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex justify-end gap-[24px] items-center mr-[116px]">
-        <Button className="flex gap-[10px] bg-[#6148FF] text-white" imgSrc="/assets/masuk.svg" ButtonText="Masuk" />
+        <Button className="flex gap-[10px] bg-[#6148FF] text-white cursor-pointer" imgSrc="/assets/masuk.svg" ButtonText="Masuk" to="/login" />
       </div>
     </div>
   );

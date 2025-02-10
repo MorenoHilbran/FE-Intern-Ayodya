@@ -6,7 +6,7 @@ function Search({ placeholder }) {
                 placeholder={placeholder} 
                 className="outline-none px-3 py-1 w-full"
             />
-            <button className="px-2 py-1 bg-[#6148FF] text-white rounded-md hover:opacity-80">
+            <button className="p-[7px] align-center bg-[#6148FF] text-white rounded-md hover:opacity-80">
                 <img src="/assets/search.svg" alt="Search" />
             </button>
         </div>
@@ -19,7 +19,7 @@ export default function HeaderAdmin({ adminName = "Admin", searchPlaceholder = "
             <h1 className="px-3 py-6 ml-[40px] text-2xl font-bold text-[#6148FF]">
                 Hi, {adminName}!
             </h1>
-            <Search placeholder={searchPlaceholder} />
+            <Search className="p-[22px] align-center" placeholder={searchPlaceholder} />
         </div>
     );
 }

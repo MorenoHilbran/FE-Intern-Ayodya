@@ -11,11 +11,8 @@ export default function Category() {
                 </div>
 
                 
-                <div className="flex flex-row gap-[10px] w-full my-[26px] ">
-                    <CardCategory card={{ imageSrc: "/assets/card-image.svg", title: "UI/UX Design" }} />
-                    <CardCategory card={{ imageSrc: "/assets/card-image.svg", title: "UI/UX Design" }} />
-                    <CardCategory card={{ imageSrc: "/assets/card-image.svg", title: "UI/UX Design" }} />
-                    <CardCategory card={{ imageSrc: "/assets/card-image.svg", title: "UI/UX Design" }} />
+                <div className="flex flex-row gap-[10px] w-full mt-[26px] ">
+                    <CardCategory/>
                 </div>
             </div>
         </div>
