@@ -23,14 +23,6 @@ export default function Sidebar() {
             Kelola Kelas
           </a>
         </li>
-        <li className={`${isActive("/admin/user")} hover:bg-[#489CFF]`}>
-          <a
-            href="/admin/user"
-            className="py-[13px] w-full px-4 inline-block text-white text-[16px] font-[700]"
-          >
-            User
-          </a>
-        </li>
         <li className={`${isActive("/login")} hover:bg-[#489CFF]`}>
           <a
             href="/"

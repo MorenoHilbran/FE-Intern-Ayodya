@@ -3,7 +3,7 @@ import Sidebar from "../organisms/Sidebar";
 import DashboardHeader from "../organisms/HeaderAdmin";
 import { Outlet } from "react-router-dom";
 
-export default function Layout() {
+export default function LayoutAdmin() {
   return (
     <div className="flex">
       <div className="w-1/6">

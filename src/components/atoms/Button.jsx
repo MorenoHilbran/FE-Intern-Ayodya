@@ -14,10 +14,11 @@ export default function Button({ onClick, className, imgSrc, ButtonText, to }) {
     return (
         <button 
             onClick={handleClick}
-            className={className}
+            className={`${className} cursor-pointer`}
         >
             {imgSrc && <img src={imgSrc} alt="icon" className="w-6 h-6" />}
             {ButtonText && <span>{ButtonText}</span>}
         </button>
     );
 }
+
