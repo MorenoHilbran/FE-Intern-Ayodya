@@ -6,7 +6,7 @@ import Search from "../molecules/Search";
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Dapatkan path saat ini
+  const location = useLocation(); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -26,7 +26,8 @@ export default function Navbar() {
       <div className="flex justify-end items-center mr-[116px]">
         {isLoggedIn ? (
           <>
-              <button
+            {/* Tombol Kelas */}
+            <button
               onClick={() => navigate("/user/kelas")}
               className={`relative cursor-pointer ${
                 location.pathname === "/user/kelas"
@@ -34,7 +35,7 @@ export default function Navbar() {
                   : "group hover:bg-[#489CFF]" 
               } px-3 py-2 rounded-lg transition duration-300`}
             >
-              <div className="flex items-center gap-2 rounded-lg transition duration-300 group-hover:bg-[#489CFF]">
+              <div className="flex items-center gap-2">
                 <Button imgSrc="/assets/list_class.svg" />
                 <span
                   className={`text-white font-medium ${
@@ -46,13 +47,28 @@ export default function Navbar() {
               </div>
             </button>
 
-            <div className="relative group cursor-pointer">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg transition duration-300 group-hover:bg-[#489CFF]">
+            {/* Tombol Notifikasi */}
+            <button
+              onClick={() => navigate("/user/notifikasi")}
+              className={`relative cursor-pointer ${
+                location.pathname === "/user/notifikasi"
+                  ? "bg-[#489CFF]"
+                  : "group hover:bg-[#489CFF]" 
+              } px-3 py-2 rounded-lg transition duration-300`}
+            >
+              <div className="flex items-center gap-2">
                 <Button imgSrc="/assets/notification.svg" />
-                <span className="hidden group-hover:block text-white font-medium">Notifikasi</span>
+                <span
+                  className={`text-white font-medium ${
+                    location.pathname === "/user/notifikasi" ? "block" : "hidden group-hover:block"
+                  }`}
+                >
+                  Notifikasi
+                </span>
               </div>
-            </div>
+            </button>
 
+            {/* Tombol Profil */}
             <button
               onClick={() => navigate("/user/profil")}
               className={`relative cursor-pointer ${
@@ -63,7 +79,13 @@ export default function Navbar() {
             >
               <div className="flex items-center gap-2">
                 <Button imgSrc="/assets/profile.svg" />
-                <span className="hidden group-hover:block text-white font-medium">Profil</span>
+                <span
+                  className={`text-white font-medium ${
+                    location.pathname === "/user/profil" ? "block" : "hidden group-hover:block"
+                  }`}
+                >
+                  Profil
+                </span>
               </div>
             </button>
           </>

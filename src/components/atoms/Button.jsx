@@ -1,24 +1,24 @@
-
 import { useNavigate } from "react-router-dom";
-export default function Button({ onClick, className, imgSrc, ButtonText, to }) {
+
+export default function Button({ onClick, className = "", imgSrc, ButtonText, to, children }) {
     const navigate = useNavigate();
 
     const handleClick = () => {
         if (to) {
-            navigate(to); 
+            navigate(to);
         } else if (onClick) {
-            onClick(); 
+            onClick();
         }
     };
 
     return (
         <button 
             onClick={handleClick}
-            className={`${className} cursor-pointer`}
+            className={`flex items-center ${className} cursor-pointer`}
         >
-            {imgSrc && <img src={imgSrc} alt="icon" className="w-6 h-6" />}
+            {imgSrc && <img src={imgSrc} alt="icon" className="w-6 h-6 mr-2" />}
             {ButtonText && <span>{ButtonText}</span>}
+            {children} 
         </button>
     );
 }
-
