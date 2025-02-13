@@ -1,4 +1,4 @@
-import Button from "../atoms/Button";
+import ButtonBack from "../molecules/ButtonBack";
 
 export default function Notification() {
     const notifications = [
@@ -28,10 +28,7 @@ export default function Notification() {
 
         <div className="flex flex-col mx-auto w-full max-w-[600px]">
               
-            <Button to="/user/home" className="text-[#6148FF] text-[16px] font-semibold mb-[15px] mt-[24px]">
-                <img src="/assets/back.svg" alt="Back" className="w-5 h-5 mr-2" />
-                <span>Kembali ke Beranda</span>
-            </Button>
+            <ButtonBack />
 
             
             <div className="border-[1px] border-[#6148FF] rounded-[16px] overflow-hidden w-full shadow-lg">
