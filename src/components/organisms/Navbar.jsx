@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "../atoms/Button";
 import Search from "../molecules/Search";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Dapatkan path saat ini
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -19,24 +20,32 @@ export default function Navbar() {
           src="/assets/Belajar_white 3.svg"
           className="w-[140px] h-[150px] ml-[95px] mb-[10px] mr-[35px]"
         />
-        <Search className="p-[22px] align-center" placeholder={"Cari Kursus Terbaik..."} />
+        <Search className="p-[22px] align-center" placeholder={"Cari Kursus Terbaik..."} sizeClass="large" />
       </div>
 
       <div className="flex justify-end items-center mr-[116px]">
         {isLoggedIn ? (
           <>
-            {/* Tombol "Kelas" */}
-            <button
+              <button
               onClick={() => navigate("/user/kelas")}
-              className="relative group cursor-pointer"
+              className={`relative cursor-pointer ${
+                location.pathname === "/user/kelas"
+                  ? "bg-[#489CFF]"
+                  : "group hover:bg-[#489CFF]" 
+              } px-3 py-2 rounded-lg transition duration-300`}
             >
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg transition duration-300 group-hover:bg-[#489CFF]">
+              <div className="flex items-center gap-2 rounded-lg transition duration-300 group-hover:bg-[#489CFF]">
                 <Button imgSrc="/assets/list_class.svg" />
-                <span className="hidden group-hover:block text-white font-medium">Kelas</span>
+                <span
+                  className={`text-white font-medium ${
+                    location.pathname === "/user/kelas" ? "block" : "hidden group-hover:block"
+                  }`}
+                >
+                  Kelas
+                </span>
               </div>
             </button>
 
-            {/* Tombol "Notifikasi" */}
             <div className="relative group cursor-pointer">
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg transition duration-300 group-hover:bg-[#489CFF]">
                 <Button imgSrc="/assets/notification.svg" />
@@ -44,12 +53,15 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Tombol "Profil" dengan Navigasi */}
             <button
               onClick={() => navigate("/user/profil")}
-              className="relative group cursor-pointer"
+              className={`relative cursor-pointer ${
+                location.pathname === "/user/profil"
+                  ? "bg-[#489CFF]"
+                  : "group hover:bg-[#489CFF]" 
+              } px-3 py-2 rounded-lg transition duration-300`}
             >
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg transition duration-300 group-hover:bg-[#489CFF]">
+              <div className="flex items-center gap-2">
                 <Button imgSrc="/assets/profile.svg" />
                 <span className="hidden group-hover:block text-white font-medium">Profil</span>
               </div>

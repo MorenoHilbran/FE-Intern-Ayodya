@@ -21,7 +21,7 @@ function TableKelas({ datas, onEdit, onDelete }) {
           {datas.map((item) => (
             <tr key={item.id} className="h-10 text-center hover:bg-gray-100">
               <td className="px-4 py-2">{item.code}</td>
-              <td className="px-4 py-2">{item.category || "-"}</td>
+              <td className="px-4 py-2">{item.category ? item.category.name : "-"}</td>
               <td className="px-4 py-2">{item.name}</td>
               <td className={`px-4 py-2 font-semibold ${item.type === "GRATIS" ? "text-green-500" : "text-[#6148FF]"}`}>{item.type}</td>
               <td className="px-4 py-2">{item.level}</td>

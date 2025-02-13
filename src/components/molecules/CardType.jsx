@@ -1,6 +1,6 @@
-export default function CardClass({ title, instructor, category, rating, level, modules, duration, price, image }) {
+export default function CardType({ title, instructor, category, rating, level, modules, duration, image, type, className }) {
     return (
-        <div className="bg-white rounded-[20px] shadow-lg w-[350px] overflow-hidden">
+        <div className={`bg-white rounded-[20px] shadow-lg overflow-hidden ${className}`}>
             
             
             <img src={image} alt={title} className="w-full h-[80px] object-cover" />
@@ -32,8 +32,8 @@ export default function CardClass({ title, instructor, category, rating, level, 
                 
                 <div className="mt-4">
                     <button className="flex justify-between items-center w-full bg-[#6148FF] text-white px-4 py-2 rounded-lg font-semibold">
-                        <span className="flex items-center gap-2">💎 Beli</span>
-                        <p className="font-bold text-white">{price.toLocaleString()}</p>
+                        <span className="flex items-center gap-2">💎</span>
+                        <p className="font-bold text-white">{type}</p>
                     </button>
                 </div>
             </div>

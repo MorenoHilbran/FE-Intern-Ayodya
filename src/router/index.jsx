@@ -20,13 +20,13 @@ export default function Router() {
 
       <Route path="/register" element={<RegisterUser />} />
 
-      {/* Layout untuk Admin */}
+      
       <Route path="/admin" element={<LayoutAdmin />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="kelola" element={<Kelola />} />
       </Route>
 
-      {/* Layout untuk User */}
+      
       <Route path="/user" element={<LayoutUser />}>
         <Route path="home" element={<UserHome />} />
         <Route path="kelas" element={<UserKelas />} />

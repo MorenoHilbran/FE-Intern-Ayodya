@@ -12,30 +12,55 @@ export default function Form({ onClose, callback, editData }) {
     content: "",
   });
 
+  const [categories, setCategories] = useState([]);
+  const classTypes = ["Premium", "Free"];
+
   useEffect(() => {
+    fetchCategories();
+    
     if (editData) {
-      setFormData(editData); // Mengisi data jika dalam mode edit
+      setFormData({
+        ...editData,
+        category: editData?.category?.id || "",
+        type: editData?.type?.id || "",
+      });
     }
   }, [editData]);
 
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/category");
+      setCategories(response.data.datas);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }; // Membuat state untuk menyimpan data form yang diinput oleh user
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const payload = {
+        ...formData,
+        category: formData.category || null, // Kirim ID kategori, bukan objek
+    };
       if (editData) {
-       // Jika dalam mode edit, gunakan PATCH
         await axios.patch(`http://localhost:3000/api/class/${editData.id}`, formData);
         alert("Data kelas berhasil diperbarui!");
       } else {
-        // Jika mode tambah, gunakan POST
-        await axios.post("http://localhost:3000/api/class", formData);
+        await axios.post("http://localhost:3000/api/class", formData, payload);
         alert("Data kelas berhasil ditambahkan!");
       }
-      callback(); 
-      onClose(); 
+      callback();
+      onClose();
     } catch (error) {
       console.error("Terjadi kesalahan:", error);
       alert(`Gagal ${editData ? "memperbarui" : "menambahkan"} data kelas.`);
@@ -54,29 +79,105 @@ export default function Form({ onClose, callback, editData }) {
         </h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col">
-          {[
-            { name: "name", label: "Nama Kelas" },
-            { name: "category", label: "Kategori" },
-            { name: "code", label: "Kode Kelas" },
-            { name: "type", label: "Tipe Kelas" },
-            { name: "level", label: "Level" },
-            { name: "price", label: "Harga" },
-          ].map((field, index) => (
-            <div key={index} className="mb-4">
-              <label htmlFor={field.name} className="block mb-2 font-medium">
-                {field.label}
-              </label>
-              <input
-                type="text"
-                name={field.name}
-                value={formData[field.name] || ""}
-                onChange={handleChange}
-                placeholder={`Masukkan ${field.label.toLowerCase()}`}
-                className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
-                required
-              />
-            </div>
-          ))}
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-2 font-medium">
+              Nama Kelas
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Masukkan nama kelas"
+              className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="category" className="block mb-2 font-medium">
+              Kategori
+            </label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+              required
+            >
+              <option value="">Pilih Kategori</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="code" className="block mb-2 font-medium">
+              Kode Kelas
+            </label>
+            <input
+              type="text"
+              name="code"
+              value={formData.code}
+              onChange={handleChange}
+              placeholder="Masukkan kode kelas"
+              className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="type" className="block mb-2 font-medium">
+              Tipe Kelas
+            </label>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+              required
+            >
+            <option value="">Pilih Tipe</option>
+            {classTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="level" className="block mb-2 font-medium">
+              Level
+            </label>
+            <input
+              type="text"
+              name="level"
+              value={formData.level}
+              onChange={handleChange}
+              placeholder="Masukkan level kelas"
+              className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="price" className="block mb-2 font-medium">
+              Harga
+            </label>
+            <input
+              type="text"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              placeholder="Masukkan harga kelas"
+              className="w-[450px] border rounded-[20px] py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
+              required
+            />
+          </div>
 
           <div className="mb-4">
             <label htmlFor="content" className="block mb-2 font-medium">
@@ -84,7 +185,7 @@ export default function Form({ onClose, callback, editData }) {
             </label>
             <textarea
               name="content"
-              value={formData.content || ""}
+              value={formData.content}
               onChange={handleChange}
               placeholder="Masukkan materi"
               className="border rounded-[20px] w-full py-2 px-4 h-24 focus:outline-none focus:ring-2 focus:ring-[#6148FF]"
@@ -94,13 +195,13 @@ export default function Form({ onClose, callback, editData }) {
           <div className="flex gap-5 mt-6">
             <button
               type="button"
-              className="bg-[#FF0000] text-white rounded-[30px] py-4 w-1/2 font-semibold"
+              className="bg-[#FF0000] text-white rounded-[30px] py-4 w-1/2 font-semibold cursor-pointer"
             >
               Upload Video
             </button>
             <button
               type="submit"
-              className="bg-[#6148FF] text-white rounded-[30px] py-4 w-1/2 font-semibold"
+              className="bg-[#6148FF] text-white rounded-[30px] py-4 w-1/2 font-semibold cursor-pointer"
             >
               Simpan
             </button>

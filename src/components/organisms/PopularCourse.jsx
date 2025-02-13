@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CardClass from "../molecules/CardClass";
 
+
 export default function PopularCourse() {
     const [categories, setCategories] = useState([]);
     const [classes, setClasses] = useState([]); 
@@ -39,7 +40,7 @@ export default function PopularCourse() {
                     <button className="text-[#6148FF] font-bold">Lihat Semua</button>
                 </div>
 
-                {/* Filter kategori */}
+                
                 <div className="flex flex-row gap-[12px] font-bold text-center">
                     <button 
                         className={`px-[21px] py-[5px] cursor-pointer rounded-[15px] ${selectedCategory === "All" ? "bg-[#6148FF] text-white" : "bg-[#E8F1FF] text-black"} hover:bg-[#6148FF] hover:text-white`} 
@@ -58,7 +59,7 @@ export default function PopularCourse() {
                     ))}
                 </div>
 
-                {/* List kursus */}
+                
                 <div className="flex flex-row w-full my-[2px] overflow-x-scroll">
                     <div className="flex justify-center gap-[10px] py-[16px]">
                         {classes
