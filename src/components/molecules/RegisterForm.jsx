@@ -27,7 +27,7 @@ export default function RegisterForm() {
     const handleRegister = async () => {
         setError(""); // Reset error saat submit
         try {
-            const response = await axios.post("http://localhost:3000/api/user/register", formData);
+            const response = await axios.post("https://be-intern-ayodya.vercel.app/api/user/register", formData);
             console.log("Registrasi berhasil:", response.data);
 
             // Arahkan ke halaman utama setelah daftar berhasil

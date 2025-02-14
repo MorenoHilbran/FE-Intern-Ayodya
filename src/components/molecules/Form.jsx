@@ -29,7 +29,7 @@ export default function Form({ onClose, callback, editData }) {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/category");
+      const response = await axios.get("https://be-intern-ayodya.vercel.app/api/category");
       setCategories(response.data.datas);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -53,10 +53,10 @@ export default function Form({ onClose, callback, editData }) {
         category: formData.category || null, // Kirim ID kategori, bukan objek
     };
       if (editData) {
-        await axios.patch(`http://localhost:3000/api/class/${editData.id}`, formData);
+        await axios.patch(`https://be-intern-ayodya.vercel.app/api/class/${editData.id}`, formData);
         alert("Data kelas berhasil diperbarui!");
       } else {
-        await axios.post("http://localhost:3000/api/class", formData, payload);
+        await axios.post("https://be-intern-ayodya.vercel.app/api/class", formData, payload);
         alert("Data kelas berhasil ditambahkan!");
       }
       callback();

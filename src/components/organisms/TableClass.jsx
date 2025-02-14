@@ -49,7 +49,7 @@ export default function TableKelola() {
 
   const dataFetching = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/class");
+      const response = await axios.get("https://be-intern-ayodya.vercel.app/api/class");
       if (response.data && response.data.datas) {
         setDatas(response.data.datas);
       }
@@ -66,7 +66,7 @@ export default function TableKelola() {
   const handleDelete = async (item) => {
     if (window.confirm(`Apakah Anda yakin ingin menghapus kelas ${item.name}?`)) {
       try {
-        await axios.delete(`http://localhost:3000/api/class/${item.id}`);
+        await axios.delete(`https://be-intern-ayodya.vercel.app/api/class/${item.id}`);
         alert(`Kelas ${item.name} berhasil dihapus`);
         dataFetching();
       } catch (error) {

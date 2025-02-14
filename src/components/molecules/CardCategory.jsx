@@ -7,7 +7,7 @@ export default function CardCategory() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/category");
+                const response = await axios.get("https://be-intern-ayodya.vercel.app/api/category");
                 setCategories(response.data.datas);
             } catch (error) {
                 console.error("Error fetching data:", error);

@@ -12,7 +12,7 @@ export default function PopularCourse() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/category");
+                const response = await axios.get("https://be-intern-ayodya.vercel.app/api/category");
                 setCategories(response.data.datas);
             } catch (error) {
                 console.error("Error fetching categories:", error);
@@ -21,7 +21,7 @@ export default function PopularCourse() {
 
         const fetchClasses = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/class"); 
+                const response = await axios.get("https://be-intern-ayodya.vercel.app/api/class"); 
                 setClasses(response.data.datas);
             } catch (error) {
                 console.error("Error fetching classes:", error);

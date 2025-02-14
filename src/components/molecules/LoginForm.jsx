@@ -25,7 +25,7 @@ export default function LoginForm({ role }) {
     const handleLogin = async () => {
         setError(""); // Reset error saat submit
         try {
-            const response = await axios.post("http://localhost:3000/api/user/login", formData);
+            const response = await axios.post("https://be-intern-ayodya.vercel.app/api/user/login", formData);
             console.log("Login berhasil:", response.data);
 
             // Simpan token ke local storage
