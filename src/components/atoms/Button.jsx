@@ -16,7 +16,7 @@ export default function Button({ onClick, className = "", imgSrc, ButtonText, to
             onClick={handleClick}
             className={`flex items-center ${className} cursor-pointer`}
         >
-            {imgSrc && <img src={imgSrc} alt="icon" className="w-6 h-6 mr-2" />}
+            {imgSrc && <img src={imgSrc} alt="icon" className="w-6 h-6" />}
             {ButtonText && <span>{ButtonText}</span>}
             {children} 
         </button>
