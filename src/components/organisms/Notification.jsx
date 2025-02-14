@@ -26,7 +26,7 @@ export default function Notification() {
 
     return (
 
-        <div className="flex flex-col mx-auto w-full max-w-[600px]">
+        <div className="flex flex-col px-[270px] pb-[70px]">
               
             <ButtonBack />
 

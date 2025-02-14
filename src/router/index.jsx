@@ -10,6 +10,7 @@ import RegisterUser from "../components/pages/users/RegisterUser";
 import UserHome from "../components/pages/users/UserHome";
 import UserKelas from "../components/pages/users/UserKelas";
 import UserNotif from "../components/pages/users/UserNotif";
+import UserProfile from "../components/pages/users/UserProfile";
 import LayoutAdmin from "../components/layouts/LayoutAdmin";
 
 export default function Router() {
@@ -32,6 +33,7 @@ export default function Router() {
         <Route path="home" element={<UserHome />} />
         <Route path="kelas" element={<UserKelas />} />
         <Route path="notifikasi" element={<UserNotif />} />
+        <Route path="profil" element={<UserProfile />} />
       </Route>
     </Routes>
   );
