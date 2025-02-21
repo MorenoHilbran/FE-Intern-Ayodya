@@ -8,7 +8,7 @@ export default function ProfileForm() {
         const fetchUser = async () => {
             try {
                 const response = await axios.get("https://be-intern-ayodya.vercel.app/api/user");
-                const userData = response.data.datas[0]; // Ambil data pertama dari array
+                const userData = response.data.datas[0]; 
                 setUser({
                     name: userData.name,
                     email: userData.email,
